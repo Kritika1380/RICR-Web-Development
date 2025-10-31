@@ -1,0 +1,25 @@
+*{
+    background-color: darkkhaki;
+}
+
+h1{
+    background-color: aliceblue;
+}
+
+p{
+    color: brown;
+
+}
+
+.A{
+    background-color: aqua;
+
+}
+
+#para1{
+    color: #AD2D2D;
+}
+
+h2{
+    background:linear-gradient(90deg, red,green,blue);
+}
