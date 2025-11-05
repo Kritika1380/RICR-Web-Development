@@ -1,0 +1,56 @@
+body{
+    background-color: aliceblue;
+    background-size: cover ;
+}
+
+#mainbox{
+    width: 500px;
+    height: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: rgb(223, 111, 130);
+    border-radius: 10px;
+}
+
+#formHeading {
+    text-align: center;
+    color: blue;
+}
+
+#loginForm{
+    width: max-content;
+    margin: auto;
+    padding: 10px;
+}
+
+.formField {
+    padding: 10px;
+    label {
+    font-size: large;
+    color: black;
+  }
+}
+
+.formField input{
+    padding: 10px;
+    border-radius: 25px;
+    outline-color: crimson;
+    border: 1px solid #7e7e7e;
+}
+
+#fromControl {
+    margin: auto;
+    width: fit-content;
+
+    button {
+        padding: 7px;
+        margin: 10px;
+        border-radius: 25px;
+    }
+}
+
+#cancelButton {
+    background-color: green;
+    color: yellow;
+    border: 1px solid green;
+}

@@ -1,0 +1,16 @@
+#s1
+{
+    width: 200px;
+    height: 200px;
+    border: 1px solid #000;
+    background-color: aqua;
+}
+
+#d1,
+#d2 {
+    width: 200px;
+    height: 200px;
+    border: 1px solid #000;
+    display: inline-block;
+    background-color: rgb(115, 83, 144);
+}

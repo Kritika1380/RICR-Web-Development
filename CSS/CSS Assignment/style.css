@@ -3,3 +3,12 @@ div{
         border: 0;
     }
 }
+*{
+    background-color: blue;
+}
+#username{
+    width: 100px;
+    height: 100px;
+    margin: 10px auto;
+    text-align: center;
+}
