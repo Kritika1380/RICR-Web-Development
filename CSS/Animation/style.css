@@ -1,0 +1,81 @@
+h1{
+    width: 200px;
+    border: 1px solid #800f0f;
+    /* margin-left: 0px; */
+}
+h1:hover{
+    /* margin-left: 200px; */
+    /* text-align: center; */
+    /* transition: margin-left 5s; */
+    width: 500px;
+    transition: width 5s;
+    transition: color 10s;
+}
+#outer{
+    
+    width: 500px;
+    height: 20px;
+    border: 1px solid #000;
+    
+    #inner{
+        width: 0%;
+        height: 20px;
+        background-color: #800f0f;
+    }  
+}
+#outer:hover {
+    #inner {
+        width: 100%;
+        background-color: green;
+        transition: width 5s ease-in-out , background-color 5s ease-in-out;
+
+    }
+
+}
+#outer1{
+    
+    width: 500px;
+    height: 20px;
+    border: 1px solid #000;
+    
+    #inner1{
+        
+        height: 20px;
+        
+    }  
+}
+#outer1:hover {
+    #inner1 {
+        animation: myAnimation 5s linear;
+
+    }
+
+}
+@keyframes myAnimation {
+    0%{
+        width: 0%;
+        background-color: red;
+    }
+    50%{
+        width: 50%;
+        background-color:yellow;
+    }
+    100%{
+        width: 100%;
+        background-color: rgb(120, 212, 133);
+    }
+}
+
+
+#d2{
+    border: 1px solid #000;
+    font-size: xx-large;
+    width: 100px;
+    height: 50px;
+}
+#d2:hover{
+    transform: rotateY(360deg);
+    transition: transform 3s;
+}
+
+

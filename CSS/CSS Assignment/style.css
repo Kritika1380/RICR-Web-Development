@@ -1,14 +1,4 @@
-div{
-    input{
-        border: 0;
-    }
-}
-*{
-    background-color: blue;
-}
-#username{
-    width: 100px;
-    height: 100px;
-    margin: 10px auto;
-    text-align: center;
+body{
+    margin: 200px 100px 200px 400px;
+    background-color: #0046FF;  
 }

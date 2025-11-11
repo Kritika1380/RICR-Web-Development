@@ -1,0 +1,42 @@
+#dabba {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #000;
+    position: absolute;
+    animation: dabba 5s linear infinite;
+
+    img{
+        height: 100%;
+        width: 100%;
+        
+    }
+}
+
+@keyframes dabba {
+    0%{
+        top: 0px;
+        left: 0px;
+        background-color: aqua;
+    }
+    25%{
+        top: 0px;
+        left: 500px;
+        background-color: brown;
+    }
+    50%{
+        top: 500px;
+        left: 500px;
+        background-color: darkblue;
+    }
+    75%{
+        top: 500px;
+        left: 0px;
+        background-color: forestgreen;
+    }
+    100%{
+        top: 0px;
+        left: 0px;
+        background-color: aqua;
+    }
+    
+}
