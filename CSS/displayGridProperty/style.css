@@ -4,7 +4,7 @@
     border: 1px solid #000;
     background-color:aquamarine;
     display: grid;
-    grid-template-columns: 100px 150px 100px 250px;
+    grid-template-columns: 100px 100px 100px ;
     justify-items: center;
     align-items: center;
      gap: 10px;

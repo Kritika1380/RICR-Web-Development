@@ -1,0 +1,37 @@
+.web{
+    width: 150px;
+}
+.icon{
+     width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px auto;
+    border-radius: 50%;
+    background: #111;       
+    color: white;
+    font-size: 28px;        
+}
+#view{
+    padding: 20px;
+    border: none;
+    background: white;
+}
+#view :hover{
+    padding: 10px;
+    background: whitesmoke;
+    border-radius: 10px;
+}
+.icon1{
+    width: 30px;
+    margin-right: 10px;
+    opacity: 50%;
+}
+.icon1:hover{
+    opacity: 100%;
+}
+.web1{
+    width: 120px;
+    filter: grayscale();
+}
