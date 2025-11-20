@@ -16,6 +16,46 @@
     />
   </head>
   <body>
+    <!-- This is Header -->
+    <div
+      class="d-flex justify-content-between p-3 bg-light-subtle px-5 mb-5 position-sticky top-0"
+    >
+      <div
+        class="d-flex gap-5 justify-content-between align-items-center fs-5 fw-semibold"
+      >
+        <div>
+          <img
+            style="width: 125px; height: 50px"
+            src="./Screenshot 2025-11-19 183553.png"
+            alt="RICR"
+          />
+        </div>
+        <div>Home</div>
+        <div>About</div>
+        <div>Courses</div>
+        <div>IDE</div>
+        <div>Contact Us</div>
+      </div>
+      <div class="d-flex gap-4 align-items-center fs-5 px-2">
+        <div>
+          <i class="bi bi-telephone-fill"></i>
+          <span class="text-decoration-none text-dark"
+            ><a href="tel:+918889991736"
+              ><span class="text-dark">+91 8889991736</span></a
+            ></span
+          >
+        </div>
+        <div id="navButton">
+          <button
+            class="px-3 py-2 border rounded text-light fs-5"
+            style="box-shadow: 5px 5px lightblue; background-color: #1e537e"
+          >
+            Student Login
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div
       class="container border border-dark bg-info-subtle w-75 text-secondary-emphasis my-5"
     >
@@ -167,14 +207,14 @@
             <option value="Workshop">Workshop/Seminar</option>
             <option value="Call">
               Recieved call from Institute (Only choose if you actually got a
-              call from us
+              call from us)
             </option>
             <option value="Other">Other</option>
           </select>
         </div>
       </div>
       <div class="container text-center m-5">
-        <button class="bg-black text-white px-4 py-2 rounded-5">Submit</button>
+        <button class="bg-black text-white px-4 py-2 rounded-5" onclick="Submit()">Submit</button>
       </div>
     </div>
 
@@ -183,5 +223,6 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
+    <script src="index.JS"></script>
   </body>
 </html>
