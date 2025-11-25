@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div
+      id="mainBox"
+      class="d-flex border border-dark m-3 p-2 justify-content-between"
+    >
+      <div class="w-75 border border-dark m-2" id="box1">
+        <h1 id="mainheading">This is heading</h1>
+        <p id="lorempara">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor rem
+          nulla eveniet dolores expedita voluptate nesciunt commodi maiores
+          eaque exercitationem hic nihil quam, ducimus facilis quisquam id
+          fugiat laudantium dolorum porro molestias alias! Eaque voluptate porro
+          repellat corrupti vel dolorem impedit! Illo impedit placeat doloribus,
+          ullam maiores ex ut maxime!
+        </p>
+      </div>
+      <div class="container w-25 border border-dark m-2 text-center d-grid">
+        <div class="row">
+          <div class="col">
+            <label for="background">Background:</label>
+            <input type="color" name="background" id="background" onclick="bg()" />
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <label for="heading">Heading:</label>
+            <input type="color" name="heading" id="heading" onclick="heading()"/>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <label for="para">Paragraph:</label>
+            <input type="color" name="para" id="para" onclick="para()" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>
