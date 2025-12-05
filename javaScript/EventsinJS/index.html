@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
-    <div id="bulb">
-        Bulb
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="rainbowbulb">Rainbow Bulb</div>
+    <div id="colorpalet">
+        <div class="color" id="c1">C1</div>
+        <div class="color" id="c2">C2</div>
+        <div class="color" id="c3">C3</div>
+        <div class="color" id="c4">C4</div>
+        <div class="color" id="c5">C5</div>
+        <div class="color" id="c6">C6</div>
+        <div class="color" id="c7">C7</div>
     </div>
+    
+
+    <hr />
+
+    <div id="bulb">Bulb</div>
 
     <button onclick="On()">on</button>
     <button onclick="Off()">off</button>
@@ -18,21 +29,18 @@
     <button onclick="Blue()">blue</button>
     <button onclick="Green()">green</button>
 
-
     <label for="color"></label>
-    <input type="color" name="color" id="color">
+    <input type="color" name="color" id="color" />
 
-    <br>
-    <hr>
+    <br />
+    <hr />
 
-    <div id="smartBulb"> Smart Bulb </div>
-    <br>
+    <div id="smartBulb">Smart Bulb</div>
+    <br />
     <button onclick="SB_Control()" id="SB_btn">On</button>
-
 
     <button onclick="SB_Control()" id="SB_btn">On/Off</button>
 
     <script src="script.js"></script>
-
-</body>
+  </body>
 </html>
