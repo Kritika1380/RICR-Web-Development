@@ -41,16 +41,15 @@ function DownloadFile() {
 
   const rows = data.map((item) => Object.values(item).join(",")).join("\n");
 
-  const CSVContent  = headers + rows;
+  const CSVContent = headers + rows;
 
-  const blob = new Blob([CSVContent],{type: "text/css"});
+  const blob = new Blob([CSVContent], { type: "text/css" });
 
   const ancharTag = document.createElement("a");
 
   ancharTag.href = URL.createObjectURL(blob);
-  ancharTag.download = "data.csv"
-  document.body.appendChild(ancharTag)
+  ancharTag.download = "data.csv";
   ancharTag.click();
-  document.body.remove(ancharTag);
-  
+
+  localStorage.removeItem("Passwordmanager");
 }

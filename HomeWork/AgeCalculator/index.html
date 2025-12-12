@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div
+      class="border gap-5 pt-5 mt-5 text-center shadow bottom-50 "
+      id="mainDiv"
+    >
+        <div class="align-items-center">
+          <b><h1>Age Calculator</h1></b>
+        <div id="date-container pt-3">
+            <h5>Enter your Birth Date</h5>
+            <label for="birthDate"></label>
+            <input
+            type="date"
+            name="birthDate"
+            id="birthDate"
+            class="m-2 px-5 p-3 align-items-center"
+            required
+            />
+        </div>
+        <div class="date-container ">
+            <h5>Current Date</h5>
+            <label for="currentDate"></label>
+            <input
+            type="date"
+            name="currentDate"
+            id="currentDate"
+            class="m-2 px-5 p-3 align-items-center"
+            required
+            />
+        </div>
+        <!-- <button class="btn btn-primary m-3 border p-2 mb-5" id="calculateBtn">Calculate</button> -->
+        <input type="button" value="Calculate" id="calculateBtn" class="btn btn-primary p-2 m-3 mb-4">
+        <p id="output"></p>
+        </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>
