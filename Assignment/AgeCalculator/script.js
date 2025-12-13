@@ -16,7 +16,7 @@ function calculateAgeDifference(start,end){
     let current = new Date(end);
 
     let dobYear  = dob.getFullYear();
-    let dobMonth = dob.getMonth() + 1;;
+    let dobMonth = dob.getMonth() + 1;
     let dobDate  = dob.getDate() ;
 
     let currYear  = current.getFullYear();
