@@ -1,18 +1,16 @@
 *{
-    margin: 0;
+    padding: 0px;
     padding: 0;
     box-sizing: border-box;
 }
-body{
-    min-height: 100vh;
-}
-
-
 #mainDiv{
     /* border: 1px solid #000; */
     padding: auto;
     margin: auto;
-    width: 400px;
-    height: auto;
-    padding-top: 100px;
+    width: 600px;
+    height: 300px;
+    font-size: medium;
+}
+b{
+    font-size: large;
 }

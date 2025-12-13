@@ -6,13 +6,14 @@
 body{
     min-height: 100vh;
 }
-
-
 #mainDiv{
     /* border: 1px solid #000; */
     padding: auto;
     margin: auto;
-    width: 400px;
+    width: 500px;
     height: auto;
-    padding-top: 100px;
+    
+}
+#totalPerson{
+    width: 300px;
 }

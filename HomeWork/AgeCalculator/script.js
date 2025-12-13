@@ -11,14 +11,17 @@ document.getElementById("calculateBtn").addEventListener("click", () => {
 });
 function calculateAgeDifference(start,end){
     console.log(start);
-    let dobYear = parseInt(start.substring(0,4),10);
-    let dobMonth = parseInt(start.substring(5,7),10);
-    let dobDate = parseInt(start.substring(8,10),10);
-    let currYear = parseInt(end.substring(0,4),10);
-    let currMonth = parseInt(end.substring(5,7),10);
-    let currDate = parseInt(end.substring(8,10),10);
 
-    // year difference
+    let dob = new Date(start);      
+    let current = new Date(end);
+
+    let dobYear  = dob.getFullYear();
+    let dobMonth = dob.getMonth() + 1;;
+    let dobDate  = dob.getDate() ;
+
+    let currYear  = current.getFullYear();
+    let currMonth = current.getMonth();
+    let currDate  =current.getDate() ;
 
     let yearAgeDifference = currYear - dobYear;
 
