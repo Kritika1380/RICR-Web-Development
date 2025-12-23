@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    min-height: 100vh;
+}
+
+
+#mainDiv{
+    /* border: 1px solid #000; */
+    padding: auto;
+    margin:auto;
+    margin-top: 150px;
+    width: 700px;
+    height: 500px;
+    padding-top: 100px;
+}
+/* #mainDiv{
+   
+    padding: auto;
+    margin:auto;
+    margin-top: 150px;
+    width: 500px;
+    height: auto;
+    padding-top: 100px;
+} */
+#img{
+    width: 100px;
+    height: 100px;
+}

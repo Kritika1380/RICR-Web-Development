@@ -10,7 +10,7 @@ async function getWeather() {
 
   document.getElementById("WeatherData").innerHTML = `
             <div>
-            <p>Temperature : ${(data.main.temp = 273.14).toFixed(2)}℃</p>
+            <p>Temperature : ${(data.main.temp - 273.14).toFixed(2)}℃</p>
             <p>Humidity : ${data.main.humidity}%</p>
             <p>Description : ${data.weather[0].description}</p>
             </div>
