@@ -5,7 +5,7 @@ a:active{
     color: red !important;
 }
 #home{
-    height: 100vh;
+    margin: 100vh;
 }
 .card{
     height: 500px;
