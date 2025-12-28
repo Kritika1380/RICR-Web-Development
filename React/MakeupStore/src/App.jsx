@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Product from "./pages/Product";
+import Footer from "./components/Footer";
 
 
 
@@ -19,9 +20,8 @@ function App() {
       <Route path="/product" element={<Product/>} />
       <Route path="/contact" element={<Contact/>} />
     </Routes>
+    <Footer/>
     </BrowserRouter>
-    
-     
     </>
   );
 }
