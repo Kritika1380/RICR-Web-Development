@@ -2,28 +2,49 @@ import React from "react";
 import { useState } from "react";
 
 const Contact = () => {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [ContactData, setContactData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    city: "",
+    subject: "",
+    message: "",
+  });
+
   const [isLoading, setIsLoading] = useState(false);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setContactData((previousData) => ({ ...previousData, [name]: value }));
+  };
+
   const handleClearForm = () => {
-    setFullName("");
-    setEmail("");
-    setMessage("");
+    setContactData({
+      fullName: "",
+      email: "",
+      phone: "",
+      city: "",
+      subject: "",
+      message: "",
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await fetch("https://official-joke-api.appspot.com/jokes/random");
-      const data = {
-          fullName,
-          email,
-          message,
-        };
-        console.log(data);
+      const response = await fetch(
+        "https://official-joke-api.appspot.com/jokes/random"
+      );
+      // const data = {
+      //   fullName,
+      //   email,
+      //   phone,
+      //   city,
+      //   subject,
+      //   message,
+      // };
+      // console.log(data);
     } catch (error) {
       console.log(error.message);
     } finally {
@@ -45,9 +66,22 @@ const Contact = () => {
                 type="text"
                 name="fullName"
                 id="fullName"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
+                value={ContactData.fullName}
+                onChange={handleChange}
                 placeholder="Enter your Name"
+                className="text-primary"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="city">City</label>
+              <input
+                type="text"
+                name="city"
+                id="city"
+                value={ContactData.city}
+                onChange={handleChange}
+                placeholder="Enter your city"
                 className="text-primary"
                 required
               />
@@ -58,9 +92,35 @@ const Contact = () => {
                 type="email"
                 name="email"
                 id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={ContactData.email}
+                onChange={handleChange}
                 placeholder="Enter your email"
+                className="text-primary"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="phone">Phone</label>
+              <input
+                type="number"
+                name="phone"
+                id="phone"
+                value={ContactData.phone}
+                onChange={handleChange}
+                placeholder="Enter your phone"
+                className="text-primary"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="subject">Subject</label>
+              <input
+                type="text"
+                name="subject"
+                id="subject"
+                value={ContactData.subject}
+                onChange={handleChange}
+                placeholder="Enter your subject"
                 className="text-primary"
                 required
               />
@@ -70,8 +130,8 @@ const Contact = () => {
               <textarea
                 name="message"
                 id="message"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
+                value={ContactData.message}
+                onChange={handleChange}
                 placeholder="Enter your message"
                 className="text-primary"
                 required
