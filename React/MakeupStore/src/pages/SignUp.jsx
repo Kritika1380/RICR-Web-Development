@@ -123,7 +123,7 @@ const Signup = () => {
             </button>
             <p className="text-center mt-3">
               Already have an account ?
-              <Link to="/login" className="text blue underline">
+              <Link to="/login" className="text-blue-700 underline">
                 Login
               </Link>
             </p>
