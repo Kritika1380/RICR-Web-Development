@@ -1,0 +1,164 @@
+[
+  {
+    "countryName": "United States of America",
+    "currencyName": "United States Dollar",
+    "currencyCode": "USD",
+    "countryCode": "US"
+  },
+  {
+    "countryName": "India",
+    "currencyName": "Indian Rupee",
+    "currencyCode": "INR",
+    "countryCode": "IN"
+  },
+  {
+    "countryName": "United Kingdom",
+    "currencyName": "Pound Sterling",
+    "currencyCode": "GBP",
+    "countryCode": "GB"
+  },
+  {
+    "countryName": "Canada",
+    "currencyName": "Canadian Dollar",
+    "currencyCode": "CAD",
+    "countryCode": "CA"
+  },
+  {
+    "countryName": "Australia",
+    "currencyName": "Australian Dollar",
+    "currencyCode": "AUD",
+    "countryCode": "AU"
+  },
+  {
+    "countryName": "Japan",
+    "currencyName": "Japanese Yen",
+    "currencyCode": "JPY",
+    "countryCode": "JP"
+  },
+  {
+    "countryName": "China",
+    "currencyName": "Chinese Yuan (Renminbi)",
+    "currencyCode": "CNY",
+    "countryCode": "CN"
+  },
+  {
+    "countryName": "Germany",
+    "currencyName": "Euro",
+    "currencyCode": "EUR",
+    "countryCode": "DE"
+  },
+  {
+    "countryName": "France",
+    "currencyName": "Euro",
+    "currencyCode": "EUR",
+    "countryCode": "FR"
+  },
+  {
+    "countryName": "Italy",
+    "currencyName": "Euro",
+    "currencyCode": "EUR",
+    "countryCode": "IT"
+  },
+  {
+    "countryName": "Spain",
+    "currencyName": "Euro",
+    "currencyCode": "EUR",
+    "countryCode": "ES"
+  },
+  {
+    "countryName": "Netherlands",
+    "currencyName": "Euro",
+    "currencyCode": "EUR",
+    "countryCode": "NL"
+  },
+  {
+    "countryName": "Switzerland",
+    "currencyName": "Swiss Franc",
+    "currencyCode": "CHF",
+    "countryCode": "CH"
+  },
+  {
+    "countryName": "Brazil",
+    "currencyName": "Brazilian Real",
+    "currencyCode": "BRL",
+    "countryCode": "BR"
+  },
+  {
+    "countryName": "Mexico",
+    "currencyName": "Mexican Peso",
+    "currencyCode": "MXN",
+    "countryCode": "MX"
+  },
+  {
+    "countryName": "Russian Federation",
+    "currencyName": "Russian Ruble",
+    "currencyCode": "RUB",
+    "countryCode": "RU"
+  },
+  {
+    "countryName": "South Africa",
+    "currencyName": "South African Rand",
+    "currencyCode": "ZAR",
+    "countryCode": "ZA"
+  },
+  {
+    "countryName": "Indonesia",
+    "currencyName": "Indonesian Rupiah",
+    "currencyCode": "IDR",
+    "countryCode": "ID"
+  },
+  {
+    "countryName": "Saudi Arabia",
+    "currencyName": "Saudi Riyal",
+    "currencyCode": "SAR",
+    "countryCode": "SA"
+  },
+  {
+    "countryName": "United Arab Emirates",
+    "currencyName": "UAE Dirham",
+    "currencyCode": "AED",
+    "countryCode": "AE"
+  },
+  {
+    "countryName": "Singapore",
+    "currencyName": "Singapore Dollar",
+    "currencyCode": "SGD",
+    "countryCode": "SG"
+  },
+  {
+    "countryName": "South Korea",
+    "currencyName": "South Korean Won",
+    "currencyCode": "KRW",
+    "countryCode": "KR"
+  },
+  {
+    "countryName": "Turkey",
+    "currencyName": "Turkish Lira",
+    "currencyCode": "TRY",
+    "countryCode": "TR"
+  },
+  {
+    "countryName": "Sweden",
+    "currencyName": "Swedish Krona",
+    "currencyCode": "SEK",
+    "countryCode": "SE"
+  },
+  {
+    "countryName": "Norway",
+    "currencyName": "Norwegian Krone",
+    "currencyCode": "NOK",
+    "countryCode": "NO"
+  },
+  {
+    "countryName": "Denmark",
+    "currencyName": "Danish Krone",
+    "currencyCode": "DKK",
+    "countryCode": "DK"
+  },
+  {
+    "countryName": "New Zealand",
+    "currencyName": "New Zealand Dollar",
+    "currencyCode": "NZD",
+    "countryCode": "NZ"
+  }
+]
