@@ -1,6 +1,5 @@
 import dotenv from "dotenv";
 dotenv.config();
-
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
@@ -22,6 +21,8 @@ app.get("/", (req, res) => {
 app.use((err, req, res, next) => {
   const ErrorMessage = err.message || "Internal Server Error";
   const StatusCode = err.StatusCode || 500;
+  console.log("Error found",{ErrorMessage,StatusCode});
+  
   res.status(StatusCode).json({ message: ErrorMessage });
 });
 
