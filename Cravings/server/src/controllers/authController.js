@@ -33,6 +33,7 @@ export const UserRegister = async (req, res, next) => {
       mobileNumber,
       password: hashPassword,
     });
+    
 
     // send response to frontend
 
