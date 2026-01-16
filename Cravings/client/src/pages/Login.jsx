@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import api from "../config/Api";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -52,6 +55,7 @@ const Login = () => {
       const res = await api.post("/auth/login", formData);
       toast.success(res.data.message);
       handleClearForm();
+      navigate("/user-dashboard")
     } catch (error) {
       console.log(error);
       toast.error(error.message);
@@ -66,7 +70,9 @@ const Login = () => {
         <div className="max-w-xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">Welcom Back</h1>
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+              Welcom Back
+            </h1>
             {/* <p className="text-lg text-gray-600">
               You are 1 step away to stop your Cavings
             </p> */}
