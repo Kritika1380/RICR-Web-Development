@@ -8,13 +8,19 @@ import UserHelpDesk from "../../components/userDashboard/UserHelpDesk";
 
 const UserDashboard = () => {
   const [active, setActive] = useState("overview");
+  const [isCollapsed, setIsCollapsed] = useState(false);
   return (
     <>
       <div className="w-full h-[91vh] flex">
-        <div className="bg-(--color-background) border-green-500 w-10/50">
-          <UserSideBar active={active} setActive={setActive} />
+        <div className={`bg-(--color-background) duration-300 ${isCollapsed?"w-2/60":"w-12/60"}`}>
+          <UserSideBar
+            active={active}
+            setActive={setActive}
+            isCollapsed={isCollapsed}
+            setIsCollapsed={setIsCollapsed}
+          />
         </div>
-        <div className="border border-amber-700 w-8/10">
+        <div className={`duration-300 ${isCollapsed?"w-58/60":"w-48/60"}`}>
           {active === "overview" && <UserOverview />}
           {active === "profile" && <UserProfile />}
           {active === "orders" && <UserOrder />}

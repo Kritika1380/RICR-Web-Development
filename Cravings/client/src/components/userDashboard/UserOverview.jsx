@@ -2,7 +2,7 @@ import React from 'react'
 
 const UserOverview = () => {
   return (
-    <div>UserOverViwe</div>
+    <div>UserOverView</div>
   )
 }
 
