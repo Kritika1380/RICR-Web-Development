@@ -1,5 +1,6 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
+import { genToken } from "../utils/authToken.js";
 
 export const UserRegister = async (req, res, next) => {
   try {
@@ -33,7 +34,6 @@ export const UserRegister = async (req, res, next) => {
       mobileNumber,
       password: hashPassword,
     });
-    
 
     // send response to frontend
 
@@ -72,8 +72,12 @@ export const UserLogin = async (req, res, next) => {
       return next(error);
     }
 
+    //Token Generation will be done here
+
+    genToken(existingUser, res);
+
     //send message to Frontend
-    res.status(200).json({message:"Login Successfully",data:existingUser})
+    res.status(200).json({ message: "Login Successfully", data: existingUser });
   } catch (error) {
     next(error);
   }
@@ -81,7 +85,7 @@ export const UserLogin = async (req, res, next) => {
 
 export const UserLogout = async (req, res, next) => {
   try {
-    res.status(200).json({message:"Logout Successfully"})
+    res.status(200).json({ message: "Logout Successfully" });
   } catch (error) {
     next(error);
   }
