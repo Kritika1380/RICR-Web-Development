@@ -11,7 +11,7 @@ const UserDashboard = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   return (
     <>
-      <div className="w-full h-[91vh] flex">
+      <div className="w-full h-[90vh] flex">
         <div className={`bg-(--color-background) duration-300 ${isCollapsed?"w-2/60":"w-12/60"}`}>
           <UserSideBar
             active={active}

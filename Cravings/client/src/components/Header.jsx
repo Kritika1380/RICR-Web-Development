@@ -1,7 +1,7 @@
 import React from "react";
 import transparentLogo from "../assets/transparentLogo.png";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthConetxt";
+import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
   const { user, isLogin } = useAuth();
@@ -40,7 +40,7 @@ const Header = () => {
         </div>
         <div className="flex gap-4">
           {isLogin ? (
-            <span className="text-red-500">{user.fullName}</span>
+            <div className="text-red-500 cursor-pointer" onClick={()=>navigate("/user-dashboard")}>{user.fullName}</div>
           ) : (
             <>
               <button
