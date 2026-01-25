@@ -18,7 +18,7 @@ export const UserUpdate = async (req, res, next) => {
 
     console.log("NewData:",currentUser);
 
-    res.status(200).json({message:"User updated Successfully"})
+    res.status(200).json({message:"User updated Successfully",data:currentUser})
     
 
     console.log("Updateing the User");

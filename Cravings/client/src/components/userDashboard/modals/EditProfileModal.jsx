@@ -1,152 +1,112 @@
 import React, { useState } from "react";
-import { useAuth } from "../../../context/AuthContext";
+import { useAuth } from "../../../context/authContext";
 import api from "../../../config/Api";
 
-const EditProfileModal = ({ user, setUser, onClose }) => {
-  const [fullName, setFullName] = useState(user?.fullName || "");
-  const [email, setEmail] = useState(user?.email || "");
-  const [mobileNumber, setMobileNumber] = useState(user?.mobileNumber || "");
+const EditProfileModal = ({ onClose }) => {
+  const { user, setUser } = useAuth();
+  const [formData, setFormData] = useState({
+    fullName: user.fullName,
+    email: user.email,
+    mobileNumber: user.mobileNumber,
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("form Sunmitted");
-    // console.log(formData);
+    console.log("form submitted");
+    console.log(formData);
+
     try {
       const res = await api.put("/user/update", formData);
+      sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
+      setUser(res.data.data);
+      setIsLogin(true);
     } catch (error) {
       console.log(error);
+    } finally {
+      onClose();
     }
-
-    // simple mobile validation
-    if (mobileNumber.length !== 10) {
-      alert("Mobile number must be 10 digits");
-      return;
-    }
-
-    setUser((prev) => ({
-      ...prev,
-      fullName,
-      email,
-      mobileNumber,
-    }));
-
-    onClose();
   };
 
   return (
-    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-100">
-      {/* w-[92%] max-w-md */}
-      <div className="bg-white  w-5xl max-h-[85vh] overflow-y-auto rounded-2xl shadow-xl p-6">
-        {/* Header */}
-        <div className="flex justify-between items-center border-b pb-3 mb-5">
-          <h2 className="text-lg font-semibold text-(--color-primary)">
-            Edit Profile
-          </h2>
-          <button
-            onClick={onClose}
-            className="text-xl text-gray-500 hover:text-red-500"
-          >
-            ✕
-          </button>
+    <>
+      <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-100">
+        <div className="bg-white w-5xl max-h-[85vh] overflow-y-auto ">
+          <div className="flex justify-between px-5 py-3 border-b border-gray-300 items-center">
+            <div>EditProfileModal</div>
+
+            <button onClick={() => onClose()} className="text-red-900 text-2xl">
+              ❌
+            </button>
+          </div>
+
+          <div>
+            <form onSubmit={handleSubmit}>
+              <div className="p-6 space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={(e) =>
+                      setFormData({ ...formData, fullName: e.target.value })
+                    }
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 cursor-not-allowed "
+                    disabled
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Mobile Number
+                  </label>
+                  <input
+                    type="text"
+                    name="mobileNumber"
+                    value={formData.mobileNumber}
+                    onChange={(e) =>
+                      setFormData({ ...formData, mobileNumber: e.target.value })
+                    }
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                  />
+                </div>
+              </div>
+              <div className="px-6 py-6 flex justify-end space-x-4 border-t border-gray-300">
+                <button
+                  type="button"
+                  onClick={() => onClose()}
+                  className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 transition"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Full Name */}
-          <div>
-            <label className="text-sm font-medium text-(--color-text)">
-              Full Name
-            </label>
-            <input
-              type="text"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-              placeholder="Enter full name"
-              className="w-full mt-1 px-3 py-2 border rounded-lg 
-              focus:outline-none focus:ring-2 
-              focus:ring-(--color-accent)"
-              required
-            />
-          </div>
-          {/* Email */}
-          <div>
-            <label className="text-sm font-medium text-(--color-text)">
-              Email
-            </label>
-            <input
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter Email"
-              className="w-full mt-1 px-3 py-2 border rounded-lg 
-              focus:outline-none focus:ring-2 
-              focus:ring-(--color-accent) cursor-not-allowed"
-              disabled
-            />
-          </div>
-
-          {/* Mobile Number */}
-          <div>
-            <label className="text-sm font-medium text-(--color-text)">
-              Mobile Number
-            </label>
-            <input
-              type="tel"
-              value={mobileNumber}
-              onChange={(e) =>
-                setMobileNumber(e.target.value.replace(/\D/g, ""))
-              }
-              maxLength={10}
-              placeholder="Enter 10 digit number"
-              className="w-full mt-1 px-3 py-2 border rounded-lg 
-              focus:outline-none focus:ring-2 
-              focus:ring-(--color-accent)"
-              required
-            />
-          </div>
-
-          {/* Buttons */}
-          <div className="flex justify-end gap-3 pt-4">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 rounded-lg border 
-              text-(--color-primary) 
-              hover:bg-gray-100"
-            >
-              Cancel
-            </button>
-
-            <button
-              type="submit"
-              className="px-5 py-2 rounded-lg font-medium text-white
-              bg-(--color-secondary)
-              hover:bg-(--color-secondary-hover)"
-            >
-              Save Changes
-            </button>
-          </div>
-        </form>
       </div>
-    </div>
+    </>
   );
 };
 
 export default EditProfileModal;
-
-// import React from "react";
-
-// const EditProfileModal = ({ onClose }) => {
-//   return (
-//     <>
-//       <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-100">
-//         <div className="bg-white w-5xl max-h-[85vh] overflow-y-auto">
-//           <div>EditProfileModal</div>
-//           <button onClick={() => onClose()}>X</button>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default EditProfileModal;

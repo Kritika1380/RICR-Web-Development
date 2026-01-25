@@ -1,27 +1,42 @@
 import React, { useState } from "react";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../context/authContext";
 import EditProfileModal from "./modals/EditProfileModal";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
+  const { user, setUser, role, islogin } = useAuth();
+  const navigate = useNavigate();
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
-  const { user,setUser } = useAuth();
+  
 
   return (
     <>
       <div className="bg-white p-6 rounded-xl shadow-md flex items-center gap-10">
         <div>
           <span className="text-lg opacity-70 text-(--color-primary)">
-            Name : 
+            Name :
           </span>
-          <span className="font-semibold text-lg text-(--color-text)"> { user.fullName}</span>
+          <span className="font-semibold text-lg text-(--color-text)">
+            {" "}
+            {user.fullName}
+          </span>
         </div>
         <div>
-          <span className="text-lg opacity-70 text-(--color-primary)">Email : </span>
-          <span className="font-semibold text-lg text-(--color-text)">{user.email}</span>
+          <span className="text-lg opacity-70 text-(--color-primary)">
+            Email :{" "}
+          </span>
+          <span className="font-semibold text-lg text-(--color-text)">
+            {user.email}
+          </span>
         </div>
         <div>
-          <span className="text-lg opacity-70 text-(--color-primary)">Phone:</span>
-          <span className="font-semibold text-lg text-(--color-text)">{user.mobileNumber}</span>
+          <span className="text-lg opacity-70 text-(--color-primary)">
+            Phone:
+          </span>
+          <span className="font-semibold text-lg text-(--color-text)">
+            {user.mobileNumber}
+          </span>
         </div>
 
         <button

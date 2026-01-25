@@ -9,6 +9,25 @@ import UserHelpDesk from "../../components/userDashboard/UserHelpDesk";
 const UserDashboard = () => {
   const [active, setActive] = useState("overview");
   const [isCollapsed, setIsCollapsed] = useState(false);
+  useEffect(() => {
+    if (!islogin) {
+      navigate("/login");
+    }
+  });
+  if (role !== "customer") {
+    return (
+      <>
+        <div className="p-3">
+         <div className="border rounded shadow p-5 w-4xl mx-auto text-center bg-gray-100">
+          <div className="text-5xl text-red-600">
+            ⊗
+          </div>
+            <div>You are not Loggedin as customer.Please login again.</div>
+         </div>
+        </div>
+      </>
+    );
+  }
   return (
     <>
       <div className="w-full h-[90vh] flex">

@@ -1,12 +1,38 @@
 import React from "react";
 import transparentLogo from "../assets/transparentLogo.png";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/authContext";
 
 const Header = () => {
-  const { user, isLogin } = useAuth();
+  const { user, isLogin, role } = useAuth();
 
   const navigate = useNavigate();
+  const handlenavigate = () => {
+    switch (role) {
+      case "manager": {
+        setRole("manager");
+        navigate("/restaurant-dashboard");
+        break;
+      }
+      case "partner": {
+        setRole("partner");
+        navigate("/partner-dashboard");
+        break;
+      }
+      case "customer": {
+        setRole("customer");
+        navigate("/customer-dashboard");
+        break;
+      }
+      case "admin": {
+        setRole("admin");
+        navigate("/admin-dashboard");
+        break;
+      }
+      default:
+        break;
+    }
+  };
 
   return (
     <>
@@ -40,7 +66,12 @@ const Header = () => {
         </div>
         <div className="flex gap-4">
           {isLogin ? (
-            <div className="text-red-500 cursor-pointer" onClick={()=>navigate("/user-dashboard")}>{user.fullName}</div>
+            <div
+              className="text-red-500 cursor-pointer"
+              onClick={() => navigate("/user-dashboard")}
+            >
+              {user.fullName}
+            </div>
           ) : (
             <>
               <button
