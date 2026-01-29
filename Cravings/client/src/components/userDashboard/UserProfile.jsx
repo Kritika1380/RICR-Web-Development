@@ -1,58 +1,98 @@
-import React, { useState } from "react";
-import { useAuth } from "../../context/authContext";
+import React, { useEffect, useState } from "react";
 import EditProfileModal from "./modals/EditProfileModal";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import UserImage from "../../assets/userImage.jpg";
+import { FaCamera } from "react-icons/fa";
+import api from "../../config/Api";
+import toast from "react-hot-toast";
+import { useAuth } from "../../context/authContext";
 
 const UserProfile = () => {
-  const { user, setUser, role, islogin } = useAuth();
-  const navigate = useNavigate();
+  const { user, setUser } = useAuth();
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
-  
+  const [preview, setPreview] = useState("");
+
+  const changePhoto = async (photo) => {
+    const form_Data = new FormData();
+
+    // console.log("Printing photo", photo);
+
+    form_Data.append("image", photo);
+    // form_Data.append("imageURL", preview);
+
+    try {
+      const res = await api.patch("/user/changePhoto", form_Data);
+
+      toast.success(res.data.message);
+
+      setUser(res.data.data);
+      sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "Unknown Error");
+    }
+  };
+
+  const handlePhotoChange = (e) => {
+    const file = e.target.files[0];
+    const newPhotoURL = URL.createObjectURL(file);
+    console.log(newPhotoURL);
+    setPreview(newPhotoURL);
+    changePhoto(file);
+  };
 
   return (
     <>
-      <div className="bg-white p-6 rounded-xl shadow-md flex items-center gap-10">
-        <div>
-          <span className="text-lg opacity-70 text-(--color-primary)">
-            Name :
-          </span>
-          <span className="font-semibold text-lg text-(--color-text)">
-            {" "}
-            {user.fullName}
-          </span>
+      <div className="bg-(--color-primary)/10 rounded-lg shadow-md p-6 md:p-8 h-full">
+        <div className="flex justify-between border p-3 rounded-3xl items-center border-gray-300 bg-white">
+          <div className="flex gap-5 items-center">
+            <div className="relative">
+              <div className=" border rounded-full w-36 h-36 overflow-hidden">
+                <img
+                  src={preview || user.photo.url || UserImage}
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute bottom-2 left-[75%] border bg-white p-2 rounded-full group flex gap-3">
+                <label
+                  htmlFor="imageUpload"
+                  className="text-(--color-primary) group-hover:text-(--color-secondary)"
+                >
+                  <FaCamera />
+                </label>
+                <input
+                  type="file"
+                  id="imageUpload"
+                  className="hidden"
+                  accept="image/*"
+                  onChange={handlePhotoChange}
+                />
+              </div>
+            </div>
+            <div>
+              <div className="text-3xl text-(--color-primary) font-bold">
+                {user.fullName || "User Name"}
+              </div>
+              <div className="text-gray-600 text-lg font-semibold">
+                {user.email || "user@example.com"}
+              </div>
+              <div className="text-gray-600 text-lg font-semibold">
+                {user.mobileNumber || "XXXXXXXXXX"}
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <button className="px-4 py-2 rounded bg-(--color-secondary) text-white">
+              Edit
+            </button>
+            <button className="px-4 py-2 rounded bg-(--color-secondary) text-white">
+              Reset password
+            </button>
+          </div>
         </div>
-        <div>
-          <span className="text-lg opacity-70 text-(--color-primary)">
-            Email :{" "}
-          </span>
-          <span className="font-semibold text-lg text-(--color-text)">
-            {user.email}
-          </span>
-        </div>
-        <div>
-          <span className="text-lg opacity-70 text-(--color-primary)">
-            Phone:
-          </span>
-          <span className="font-semibold text-lg text-(--color-text)">
-            {user.mobileNumber}
-          </span>
-        </div>
-
-        <button
-          className="ml-auto border px-6 py-2 rounded-full bg-amber-400 hover:bg-amber-500"
-          onClick={() => setIsEditProfileModalOpen(true)}
-        >
-          Edit Profile
-        </button>
       </div>
 
       {isEditProfileModalOpen && (
-        <EditProfileModal
-          user={user}
-          setUser={setUser}
-          onClose={() => setIsEditProfileModalOpen(false)}
-        />
+        <EditProfileModal onClose={() => setIsEditProfileModalOpen(false)} />
       )}
     </>
   );

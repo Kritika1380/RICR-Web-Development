@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useAuth } from "../../../context/authContext";
 import api from "../../../config/Api";
+import { useAuth } from "../../../context/authContext";
 
 const EditProfileModal = ({ onClose }) => {
   const { user, setUser } = useAuth();
@@ -23,7 +23,7 @@ const EditProfileModal = ({ onClose }) => {
     } catch (error) {
       console.log(error);
     } finally {
-      onClose();
+      onClose(); 
     }
   };
 
@@ -32,14 +32,16 @@ const EditProfileModal = ({ onClose }) => {
       <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-100">
         <div className="bg-white w-5xl max-h-[85vh] overflow-y-auto ">
           <div className="flex justify-between px-5 py-3 border-b border-gray-300 items-center">
-            <div>EditProfileModal</div>
+            <div>
+              EditProfileModal
+            </div>
 
-            <button onClick={() => onClose()} className="text-red-900 text-2xl">
+            <button onClick={()=>onClose()} className="text-red-900 text-2xl">
               ❌
             </button>
           </div>
 
-          <div>
+           <div>
             <form onSubmit={handleSubmit}>
               <div className="p-6 space-y-4">
                 <div>
@@ -103,6 +105,11 @@ const EditProfileModal = ({ onClose }) => {
               </div>
             </form>
           </div>
+
+
+
+
+
         </div>
       </div>
     </>
