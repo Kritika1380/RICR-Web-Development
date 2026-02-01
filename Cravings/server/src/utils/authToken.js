@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+
 export const genToken = (user, res) => {
   try {
     const payload = {
@@ -7,7 +8,7 @@ export const genToken = (user, res) => {
     };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "1d",
-    }); //1h ,1m,60, empty for forever
+    });
 
     console.log(token);
 
