@@ -1,53 +1,282 @@
-import cloudinary from "../config/cloudinary.js";
-import RestaurantUser from "../models/restaurantModel.js";
-import bcrypt from "bcrypt";
+import Menu from "../models/menuSchema.js";
+import { UploadMultipleToCloudinary } from "../utils/imageUploader.js";
 
-export const UserUpdate = async (req, res, next) => {
+export const RestaurantAddMenuItem = async (req, res, next) => {
   try {
-    //logic here
+    const {
+      itemName,
+      description,
+      price,
+      type,
+      preparationTime,
+      availability,
+      servingSize,
+      cuisine,
+    } = req.body;
 
-    const { fullName, email, mobileNumber } = req.body;
-    const currentUser = req.user;
+    const CurrentUser = req.user;
 
-    if (!fullName || !email || !mobileNumber) {
-      const error = new Error("All Feilds Required");
+    if (
+      !itemName ||
+      !description ||
+      !price ||
+      !type ||
+      !preparationTime ||
+      !availability ||
+      !servingSize ||
+      !cuisine
+    ) {
+      const error = new Error("All Fields are Required");
       error.statusCode = 400;
       return next(error);
     }
 
-    console.log("OldData: ", currentUser); //old user data in JSON format
-    //first Way
-    // currentUser.fullName = fullName;
-    // currentUser.email = email;
-    // currentUser.mobileNumber = mobileNumber;
-    // await currentUser.save();
+    const images = await UploadMultipleToCloudinary(req.files);
+    console.log(images);
 
-    // console.log("NewData:", currentUser);
+    const newMenuItem = await Menu.create({
+      itemName,
+      description,
+      price,
+      type,
+      preparationTime,
+      availability,
+      servingSize,
+      cuisine,
+      images,
+      resturantID: CurrentUser._id,
+    });
 
-    //Second Way
+    res.status(201).json({
+      message: "Menu Item Added Successfully",
+      data: newMenuItem,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+export const RestaurantEditMenuItem = async (req, res, next) => {
+  try {
+    const {
+      itemName,
+      description,
+      price,
+      type,
+      preparationTime,
+      availability,
+      servingSize,
+      cuisine,
+    } = req.body;
 
-    const updatedUser = await RestaurantUser.findByIdAndUpdate(
-      { _id: currentUser._id },
-      {
-        fullName,
-        email,
-        mobileNumber,
-      },
-      { new: true },
-    );
+    const { id } = req.params;
 
-    console.log("Updated User: ", updatedUser);
-    res
-      .status(200)
-      .json({ message: "User Updated Sucessfully", data: updatedUser });
+    const CurrentUser = req.user;
 
-    console.log("Updating the user");
+    if (
+      !itemName ||
+      !description ||
+      !price ||
+      !type ||
+      !preparationTime ||
+      !availability ||
+      !servingSize ||
+      !cuisine
+    ) {
+      const error = new Error("All Fields are Required");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    let images = [];
+    if (req.files) {
+      images = await UploadMultipleToCloudinary(req.files);
+      console.log(images);
+    }
+
+    const existingMenuItem = await Menu.findById(id);
+
+    existingMenuItem.itemName = itemName || existingMenuItem.itemName;
+    existingMenuItem.description = description || existingMenuItem.description;
+    existingMenuItem.price = price || existingMenuItem.price;
+    existingMenuItem.type = type || existingMenuItem.type;
+    existingMenuItem.preparationTime =
+      preparationTime || existingMenuItem.preparationTime;
+    existingMenuItem.availability =
+      availability || existingMenuItem.availability;
+    existingMenuItem.servingSize = servingSize || existingMenuItem.servingSize;
+    existingMenuItem.cuisine = cuisine || existingMenuItem.cuisine;
+    existingMenuItem.images =
+      images.length > 0 ? images : existingMenuItem.images;
+    await existingMenuItem.save();
+
+    res.status(201).json({
+      message: "Menu Item Updated Successfully",
+    });
   } catch (error) {
     next(error);
   }
 };
 
-export const UserChangePhoto = async (req, res, next) => {
+export const GetRestaurantMenuItem = async (req, res, next) => {
+  try {
+    const CurrentUser = req.user;
+
+    const menuItems = await Menu.find({ resturantID: CurrentUser._id });
+
+    res.status(200).json({
+      message: "Menu Items Fetched Successfully",
+      data: menuItems,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
+export const RestaurantUpdate = async (req, res, next) => {
+  try {
+    const {
+      fullName,
+      email,
+      mobileNumber,
+      gender,
+      dob,
+      address,
+      city,
+      pin,
+      restaurantName,
+      cuisine,
+      documents,
+      paymentDetails,
+      geoLocation,
+    } = req.body;
+    const currentUser = req.user;
+
+    // Validation for required fields
+    if (!fullName || !email || !mobileNumber) {
+      const error = new Error("Full Name, Email, and Mobile Number are required");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    if (!city || !pin) {
+      const error = new Error("City and PIN Code are required");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    if (!restaurantName) {
+      const error = new Error("Restaurant Name is required");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    // Validate email format
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      const error = new Error("Invalid email format");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    // Validate mobile number (10 digits)
+    if (!/^\d{10}$/.test(mobileNumber.replace(/\D/g, ""))) {
+      const error = new Error("Mobile number must be 10 digits");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    // Validate PIN code (6 digits)
+    if (!/^\d{6}$/.test(pin)) {
+      const error = new Error("PIN code must be 6 digits");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    // Validate PAN format if provided
+    if (
+      documents?.pan &&
+      documents.pan !== "N/A" &&
+      !/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(documents.pan)
+    ) {
+      const error = new Error("Invalid PAN format");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    // Validate UPI format if provided
+    if (
+      paymentDetails?.upi &&
+      paymentDetails.upi !== "N/A" &&
+      !/^[a-zA-Z0-9._-]+@[a-zA-Z]{3,}$/.test(paymentDetails.upi)
+    ) {
+      const error = new Error("Invalid UPI format");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    // Update personal information
+    currentUser.fullName = fullName;
+    currentUser.email = email.toLowerCase();
+    currentUser.mobileNumber = mobileNumber;
+    currentUser.gender = gender || currentUser.gender;
+    currentUser.dob = dob || currentUser.dob;
+    currentUser.address = address || currentUser.address;
+    currentUser.city = city;
+    currentUser.pin = pin;
+
+    // Update restaurant information
+    currentUser.restaurantName = restaurantName;
+    currentUser.cuisine = cuisine || currentUser.cuisine;
+
+    // Update nested documents
+    if (documents) {
+      currentUser.documents = {
+        gst: documents.gst || currentUser.documents?.gst || "N/A",
+        fssai: documents.fssai || currentUser.documents?.fssai || "N/A",
+        rc: documents.rc || currentUser.documents?.rc || "N/A",
+        dl: documents.dl || currentUser.documents?.dl || "N/A",
+        uidai: documents.uidai || currentUser.documents?.uidai || "N/A",
+        pan: documents.pan || currentUser.documents?.pan || "N/A",
+      };
+    }
+
+    // Update payment details
+    if (paymentDetails) {
+      currentUser.paymentDetails = {
+        upi: paymentDetails.upi || currentUser.paymentDetails?.upi || "N/A",
+        account_number:
+          paymentDetails.account_number ||
+          currentUser.paymentDetails?.account_number ||
+          "N/A",
+        ifs_Code:
+          paymentDetails.ifs_Code ||
+          currentUser.paymentDetails?.ifs_Code ||
+          "N/A",
+      };
+    }
+
+    // Update geo location
+    if (geoLocation) {
+      currentUser.geoLocation = {
+        lat: geoLocation.lat || currentUser.geoLocation?.lat || "N/A",
+        lon: geoLocation.lon || currentUser.geoLocation?.lon || "N/A",
+      };
+    }
+
+    console.log("OldData: ", req.user);
+    await currentUser.save();
+    console.log("NewData:", currentUser);
+
+    res
+      .status(200)
+      .json({ message: "User Updated Successfully", data: currentUser });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const RestaurantChangePhoto = async (req, res, next) => {
   try {
     // console.log("body: ", req.body);
     const currentUser = req.user;
@@ -73,7 +302,7 @@ export const UserChangePhoto = async (req, res, next) => {
     console.log("DataURI", dataURI.slice(0, 100));
 
     const result = await cloudinary.uploader.upload(dataURI, {
-      folder: "Cravings/RestaurantUser",
+      folder: "Cravings/User",
       width: 500,
       height: 500,
       crop: "fill",
@@ -91,7 +320,7 @@ export const UserChangePhoto = async (req, res, next) => {
   }
 };
 
-export const UserResetPassword = async (req, res, next) => {
+export const RestaurantResetPassword = async (req, res, next) => {
   try {
     const { oldPassword, newPassword } = req.body;
     const currentUser = req.user;
