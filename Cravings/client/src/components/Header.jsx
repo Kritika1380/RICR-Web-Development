@@ -36,7 +36,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="bg-(--color-primary) px-4 py-2 flex justify-between items-center ">
+      <div className="bg-(--color-primary) px-4 py-2 flex justify-between items-center sticky-fixed top-0 left-0 w-full">
         <Link to={"/"}>
           <img
             src={transparentLogo}
