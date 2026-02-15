@@ -1,3 +1,4 @@
+
 import sendEmail from "../config/email.js";
 
 export const sendOTPEmail = async (to, otp) => {

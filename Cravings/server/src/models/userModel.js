@@ -132,11 +132,11 @@ const userSchema = mongoose.Schema(
         default: "N/A",
       },
     },
-    isActive:{
-      type:String,
-      enum:["active","inactive","blocked"],
-      required:true,
-      default:"active",
+    isActive: {
+      type: String,
+      enum: ["active", "inactive", "blocked"],
+      required: true,
+      default: "active",
     },
   },
   { timestamps: true },
@@ -144,5 +144,3 @@ const userSchema = mongoose.Schema(
 
 const User = mongoose.model("User", userSchema);
 export default User;
-
-

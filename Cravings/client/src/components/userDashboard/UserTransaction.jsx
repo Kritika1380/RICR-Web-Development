@@ -1,9 +1,9 @@
 import React from 'react'
 
-const UserTransaction = () => {
+const UserTransactions = () => {
   return (
-    <div>UserTransaction</div>
+    <div>UserTransactions</div>
   )
 }
 
-export default UserTransaction
+export default UserTransactions

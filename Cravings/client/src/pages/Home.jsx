@@ -93,7 +93,7 @@ const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-linear-to-r from-orange-500 to-orange-600 text-white py-20">
+      <section className="relative bg-gradient-to-r from-orange-500 to-orange-600 text-white py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* Left Content */}
@@ -163,7 +163,7 @@ const Home = () => {
                 key={restaurant.id}
                 className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 overflow-hidden cursor-pointer transform hover:scale-105"
               >
-                <div className="h-40 bg-linear-to-br from-orange-400 to-orange-500 flex items-center justify-center">
+                <div className="h-40 bg-gradient-to-br from-orange-400 to-orange-500 flex items-center justify-center">
                   <span className="text-6xl">{restaurant.image}</span>
                 </div>
                 <div className="p-4">
@@ -209,7 +209,7 @@ const Home = () => {
                 key={dish.id}
                 className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 overflow-hidden cursor-pointer"
               >
-                <div className="h-48 bg-linear-to-br from-orange-300 to-orange-400 flex items-center justify-center">
+                <div className="h-48 bg-gradient-to-br from-orange-300 to-orange-400 flex items-center justify-center">
                   <span className="text-8xl">{dish.image}</span>
                 </div>
                 <div className="p-4">

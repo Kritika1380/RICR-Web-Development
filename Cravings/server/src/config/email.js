@@ -1,10 +1,11 @@
 import nodemailer from "nodemailer";
-// import dotenv from 'dotenv'
+// import dotenv from "dotenv";
 // dotenv.config();
 
 const sendEmail = async (to, subject, message) => {
   try {
     console.log("Started Sending Email");
+
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -13,6 +14,8 @@ const sendEmail = async (to, subject, message) => {
       },
     });
 
+    console.log("3....2....1....");
+
     const mailOption = {
       from: process.env.GMAIL_USER,
       to,
@@ -20,7 +23,7 @@ const sendEmail = async (to, subject, message) => {
       html: message,
     };
 
-    console.log("3...2....1...");
+    console.log("Sending Email");
 
     const res = await transporter.sendMail(mailOption);
     console.log(res);
@@ -31,8 +34,3 @@ const sendEmail = async (to, subject, message) => {
 
 export default sendEmail;
 
-// sendEmail(
-//   "kritika.error404@gmail.com",
-//   "test Email",
-//   "<p style = 'color:red;'>Test Message</p>",
-// );
